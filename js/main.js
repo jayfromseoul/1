@@ -5,7 +5,7 @@ let time = GAME_TIME;
 let isPlaying = false;
 let timeInterval;
 let checkInterval;
-let words;
+let words = [];
 
 const wordInput = document.querySelector(`.word-input`);
 const wordDisplay = document.querySelector(`.word-display`);
@@ -16,6 +16,7 @@ const button = document.querySelector(`.button`);
 init();
 
 function init() {
+    buttonChange('게임로딩중...');
     getWords();
     wordInput.addEventListener('input',checkMatch);
 }
@@ -45,8 +46,19 @@ function checkStatus() {
 
 //단어 불러오기
 function getWords() {
-    words = ['Hello', 'Banana', 'Apple', 'Cherry'];
+    axios.get('https://random-word-api.herokuapp.com/word?number=1000')
+  .then(function (response) {
+    response.data.forEach((word)=>{
+        if(word.length < 10) {
+            words.push(word);
+        }
+    })
     buttonChange('게임시작');
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
 }
 
 //단어 일치 체크
