@@ -40,3 +40,22 @@ body {
     justify-content: space-between;
     width: 200px;
 }
+
+.time, .score {
+    font-size: 30px;
+}
+
+.button {
+    width: 200px;
+    height: 35px;
+    background: #3b5999;
+    color: #fff;
+    border: none;
+    margin-top: 3rem;
+    cursor: pointer; 
+}
+
+.loading {
+    background: #ccc;
+    cursor: not-allowed;
+}
